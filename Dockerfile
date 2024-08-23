@@ -25,7 +25,10 @@ WORKDIR /var/www/html
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install project dependencies
+## Set the COMPOSER_ALLOW_SUPERUSER environment variable
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# Install dependencies with Composer
 RUN composer install
 
 # Ensure directory exist
