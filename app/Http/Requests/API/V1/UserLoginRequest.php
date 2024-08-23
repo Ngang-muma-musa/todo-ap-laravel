@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\API\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTodoRequest extends FormRequest
+class UserLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateTodoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => ['required', 'string'],
+            'password' => ['required', 'string'],
         ];
     }
 }
