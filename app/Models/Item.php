@@ -11,7 +11,7 @@ class Item extends Model
 
     protected $fillable = [
         'title',
-        'group_id'
+        'todo_id'
     ];
 
     public function todo () {

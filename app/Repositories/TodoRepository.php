@@ -7,14 +7,15 @@ use App\Models\Todo;
 
 class TodoRepository implements TodoRepositoryInterface
 {
-    public function getTodos()
+    public function getTodos($userId)
     {
+        $todo = Todo::where('user_id', $userId)->get();
         return Todo::with('items')->paginate();
     }
 
     public function getTodo($id)
     {
-        return Todo::with('todos')->findOrFail($id);
+        return Todo::with('items')->findOrFail($id);
     }
 
     public function getCompletedTodos()

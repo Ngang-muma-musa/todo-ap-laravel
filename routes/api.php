@@ -32,6 +32,6 @@ Route::group(['middleware' => ['auth:sanctum']], function ()  {
         Route::apiResource('users.todos', TodoController::class);
     
         // Todo Routes (Nested under groups)
-        Route::apiResource('groups.items', ItemController::class)->except(['show']);
+        Route::apiResource('todos.items', ItemController::class)->except(['show']);
     });
 });

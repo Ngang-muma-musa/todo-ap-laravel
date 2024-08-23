@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface TodoRepositoryInterface
 {
-    public function getTodos();
+    public function getTodos($userID);
 
     public function getTodo($id);
 

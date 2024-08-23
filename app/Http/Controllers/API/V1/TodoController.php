@@ -19,10 +19,10 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($userId)
     {
         try {
-            $todos = $this->todoRepository->getTodos();
+            $todos = $this->todoRepository->getTodos($userId);
             return new TodoCollection($todos);
         } catch (\Exception $err) {
             Log::error('Failed to retrieve todos', [
