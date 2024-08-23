@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('todo_id')->constrained('todos')->onDelete('cascade');
+            $table->string('title');
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
