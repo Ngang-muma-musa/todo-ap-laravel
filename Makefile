@@ -12,7 +12,9 @@ up:
 composer-update:
 	docker exec todo-laravel bash -c "composer update"
 
-test: build
+test: build test-dev
+
+test-dev:
 	docker exec -it todo-laravel bash -c 'php artisan test'
 	
 migrate:
@@ -25,3 +27,12 @@ logs:
 	docker logs todo-laravel 
 prune:
 	docker system prune
+
+deploy-staging:
+	@echo "Deploying to staging........"
+	@echo "Successfully deployed to staging"
+
+deploy-prodoction:
+	@echo "Deploying to production........"
+	@echo "Successfully deployed to production"
+
