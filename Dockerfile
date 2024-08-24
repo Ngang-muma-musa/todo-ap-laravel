@@ -33,5 +33,7 @@ WORKDIR /var/www/html
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 #give permissoions
-RUN chown -R www-data: /var/www/html
-RUN chmod -R 777 .
+RUN mkdir -p /var/www/html/storage /var/www/html/storage/logs /var/www/html/bootstrap/cache && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod -R 777 /var/www/html && \
+    chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache

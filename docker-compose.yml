@@ -8,13 +8,25 @@ services:
     ports:
       - 5000:80
   
-  mysql_db:
+  mysql:
     image: mysql:8
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: todo
+      MYSQL_DATABASE: todo-app
     ports:
       - 3000:3306
+    volumes:
+      - mysql:/var/lib/mysql
+  
+  mysql_test:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo-app-test
+    ports:
+      - 3001:3306
+    volumes:
+      - mysql_test:/var/lib/mysql
   
   phpmyadmin:
     image: phpmyadmin:latest
@@ -22,3 +34,10 @@ services:
       - 9001:80
     environment:
       - PMA_ARBITRARY=1
+
+volumes:
+  mysql:
+    driver: local
+  mysql_test:
+    driver: local
+  
