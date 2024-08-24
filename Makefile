@@ -38,7 +38,7 @@ composer-update:
 	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c "composer update"
 
 # Run tests in the Docker container
-test: down dev install-dependencies logs show test-dev
+test: down dev logs show test-dev
 
 show:
 	@echo "Current running Docker containers:"
