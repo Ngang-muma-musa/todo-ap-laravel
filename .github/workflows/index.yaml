@@ -24,9 +24,6 @@ jobs:
           php-version: '8.0'
           tools: composer
 
-      - name: Install dependencies
-        run: make install-dependencies # Assuming you have an 'install-dependencies' target in your Makefile
-
       - name: Run unit and acceptance test
         if: |
           github.ref == 'refs/heads/main' ||
