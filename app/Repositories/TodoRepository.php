@@ -9,22 +9,28 @@ class TodoRepository implements TodoRepositoryInterface
 {
     public function getTodos($userId)
     {
-        $todo = Todo::where('user_id', $userId)->get();
-        return Todo::with('items')->paginate();
+        // Query to fetch todos for a specific user with related items and apply pagination
+        return Todo::where('user_id', $userId)
+            ->with('items') // Eager load related items
+            ->paginate(); // Apply pagination
     }
 
-    public function getTodo($id)
+    public function getTodo($userId,$id)
+    
     {
-        return Todo::with('items')->findOrFail($id);
+        $todo = Todo::where('user_id', $userId)
+        ->where('id', $id)
+        ->with('items') // Eager load the related items
+        ->firstOrFail(); // Retrieve a single model or fail
+
+        return $todo;
     }
 
     public function getCompletedTodos()
     {
-        return Todo::with('items')
-            ->whereDoesntHave('todos', function ($query) {
-                $query->whereNull('completed_at');
-            })
-            ->get();
+        return Todo::with('items') // Eager load related items
+            ->whereNotNull('completed_at') // Filter todos that have a completed_at value
+            ->get(); // Retrieve the collection
     }
 
     public function createTodo(array $body)
@@ -32,9 +38,9 @@ class TodoRepository implements TodoRepositoryInterface
         return Todo::create($body);
     }
 
-    public function updateTodo(array $body, $id)
+    public function updateTodo(array $body,$userId, $id)
     {
-        $todo = $this->getTodo($id);
+        $todo = $this->getTodo($userId,$id);
         $todo->update($body);
         return $todo;
     }

@@ -64,10 +64,10 @@ class TodoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($userId,$id)
     {
         try {
-            $todo = $this->todoRepository->getTodo($id);
+            $todo = $this->todoRepository->getTodo($userId,$id);
 
             if (!$todo) {
                 throw new NotFoundHttpException('Todo not found');
@@ -92,10 +92,10 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTodoRequest $request, $id)
+    public function update(UpdateTodoRequest $request, $userId,$id)
     {
         try {
-            $todo = $this->todoRepository->updateTodo($request->all(), $id);
+            $todo = $this->todoRepository->updateTodo($request->all(),$userId, $id);
             return new TodoResource($todo);
         } catch (ModelNotFoundException $e) {
             throw new CustomException($e, 'Todo not found', 404);
@@ -115,10 +115,10 @@ class TodoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($userId,$id)
     {
         try {
-            $todo = $this->todoRepository->getTodo($id);
+            $todo = $this->todoRepository->getTodo($userId,$id);
 
             if (!$todo) {
                 throw new NotFoundHttpException('Todo not found');
