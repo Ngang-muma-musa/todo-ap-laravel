@@ -37,7 +37,7 @@ jobs:
           github.ref == 'refs/heads/develop' ||
           github.ref == 'refs/heads/Test-todo-repo' ||
           startsWith(github.ref, 'refs/heads/feature/')
-        run: docker logs $(docker ps -q --filter "name=app") && make test
+        run: make logs && make test
 
          # Assuming you have a 'test' target in your Makefile
 
