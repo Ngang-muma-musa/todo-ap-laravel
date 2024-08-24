@@ -1,7 +1,7 @@
 ROOT_DIR       := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 SHELL          := $(shell which bash)
-PROJECT_NAME    = todo-laravel
-ARGS            = $(filter-out $@,$(MAKECMDGOALS))
+PROJECT_NAME   := todo-laravel
+ARGS           := $(filter-out $@,$(MAKECMDGOALS))
 
 .SILENT: ;               # no need for @
 .ONESHELL: ;             # recipes execute in same shell
@@ -57,7 +57,7 @@ root:
 
 # Show logs for the specified service
 logs:
-	docker logs $(PROJECT_NAME)_app
+	docker logs $$(docker-compose --project-name $(PROJECT_NAME) ps -q app)
 
 # Remove unused Docker objects
 prune:
