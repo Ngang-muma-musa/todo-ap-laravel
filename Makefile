@@ -36,3 +36,5 @@ deploy-prodoction:
 	@echo "Deploying to production........"
 	@echo "Successfully deployed to production"
 
+install-dependencies:
+	composer install
