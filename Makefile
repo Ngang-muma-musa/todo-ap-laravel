@@ -41,7 +41,7 @@ composer-update:
 test: dev test-dev
 
 test-dev:
-	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c 'php artisan test'
+	docker exec $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c 'php artisan test'
 
 # Run database migrations
 migrate:
