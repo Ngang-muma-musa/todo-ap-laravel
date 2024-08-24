@@ -30,7 +30,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Install dependencies with Composer
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+RUN composer install --no-interaction --optimize-autoloader --no-dev && composer dump-autoload
 
 #give permissoions
 RUN mkdir -p /var/www/html/storage /var/www/html/storage/logs /var/www/html/bootstrap/cache && \

@@ -38,7 +38,7 @@ composer-update:
 	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c "composer update"
 
 # Run tests in the Docker container
-test: down dev logs show test-dev
+test: down dev install-dependencies logs show test-dev
 
 show:
 	@echo "Current running Docker containers:"
@@ -82,7 +82,7 @@ deploy-production:
 
 # Install Composer dependencies
 install-dependencies:
-	composer install
+	docker exec -u root $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c 'composer install'
 
 test1:
 	docker exec -it todo-laravel-app-1 bash -c 'php artisan test'
