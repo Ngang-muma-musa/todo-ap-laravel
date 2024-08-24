@@ -31,16 +31,13 @@ jobs:
       # - name: Install dependencies
       #   run: make install-dependencies # Assuming you have an 'install-dependencies' target in your Makefile
 
-      - name: Get container logs
-        run: docker logs $(docker ps -q --filter "name=app")
-
       - name: Run unit and acceptance test
         if: |
           github.ref == 'refs/heads/main' ||
           github.ref == 'refs/heads/develop' ||
           github.ref == 'refs/heads/Test-todo-repo' ||
           startsWith(github.ref, 'refs/heads/feature/')
-        run: make test
+        run: docker logs $(docker ps -q --filter "name=app") && make test
 
          # Assuming you have a 'test' target in your Makefile
 
