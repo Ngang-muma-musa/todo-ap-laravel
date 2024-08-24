@@ -35,17 +35,17 @@ up:
 
 # Update Composer dependencies
 composer-update:
-	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) /bin/bash -c "composer update"
+	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c "composer update"
 
 # Run tests in the Docker container
 test: build test-dev
 
 test-dev:
-	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) /bin/bash -c 'php artisan test'
+	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c 'php artisan test'
 
 # Run database migrations
 migrate:
-	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) /bin/bash -c 'php artisan migrate'
+	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c 'php artisan migrate'
 
 # Bring down Docker containers
 down:
@@ -53,7 +53,7 @@ down:
 
 # Access Docker container with root user
 root:
-	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) /bin/bash
+	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash
 
 # Show logs for the specified service
 logs:
