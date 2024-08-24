@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
-
+use Illuminate\Http\Request;
 class Handler extends ExceptionHandler
 {
     /**
@@ -21,10 +21,18 @@ class Handler extends ExceptionHandler
     /**
      * Register the exception handling callbacks for the application.
      */
-    public function register(): void
+    public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Request $request, Exception $exception) {
+            if ($exception instanceof CustomException) {
+                $exception->logError();
+                return $exception->render($request);
+            }
+
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'error' => $exception->getTraceAsString(),
+            ], 500);
         });
     }
 }

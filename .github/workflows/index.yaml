@@ -1,0 +1,49 @@
+name: Laravel CI/CD Pipeline with Makefile
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - Test-todo-repo
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: composer
+      - name: Set up Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      # - name: Install dependencies
+      #   run: make install-dependencies # Assuming you have an 'install-dependencies' target in your Makefile
+
+      - name: Run unit and acceptance test
+        if: |
+          github.ref == 'refs/heads/main' ||
+          github.ref == 'refs/heads/develop' ||
+          github.ref == 'refs/heads/Test-todo-repo' ||
+          startsWith(github.ref, 'refs/heads/feature/')
+        run: make test
+         # Assuming you have a 'test' target in your Makefile
+
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/develop'
+        run: make deploy-staging
+
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/master'
+        run: make deploy-prodoction # Assuming you have a 'deploy' target in your Makefile
