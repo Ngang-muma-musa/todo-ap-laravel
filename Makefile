@@ -1,3 +1,4 @@
+dev: build up
 setup:
 	@make build
 	@make up 
@@ -10,10 +11,17 @@ up:
 	docker-compose up -d
 composer-update:
 	docker exec todo-laravel bash -c "composer update"
-data:
-	docker exec todo-laravel bash -c "php artisan migrate"
-	docker exec todo-laravel bash -c "php artisan db:seed"
-test:
-	php artisan test
+
+test: build
+	docker exec -it todo-laravel bash -c 'php artisan test'
+	
 migrate:
 	php artisan migrate
+down:
+	docker compose down
+root:
+	docker exec -it todo-laravel bash
+logs:
+	docker logs todo-laravel 
+prune:
+	docker system prune

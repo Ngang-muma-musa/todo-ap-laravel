@@ -37,3 +37,8 @@ RUN mkdir -p /var/www/html/storage /var/www/html/storage/logs /var/www/html/boot
     chown -R www-data:www-data /var/www/html && \
     chmod -R 777 /var/www/html && \
     chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
+
+EXPOSE 8000
+
+# Run migrations and start the server
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000

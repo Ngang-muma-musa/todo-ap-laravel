@@ -6,8 +6,10 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - 5000:80
-  
+      - 5000:8000
+    depends_on:
+      - mysql
+      
   mysql:
     image: mysql:8
     environment:
@@ -17,6 +19,7 @@ services:
       - 3000:3306
     volumes:
       - mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   
   mysql_test:
     image: mysql:8
@@ -27,6 +30,7 @@ services:
       - 3001:3306
     volumes:
       - mysql_test:/var/lib/mysql
+      - ./test.sql:/docker-entrypoint-initdb.d/test.sql
   
   phpmyadmin:
     image: phpmyadmin:latest
