@@ -38,7 +38,7 @@ composer-update:
 	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c "composer update"
 
 # Run tests in the Docker container
-test: build test-dev
+test: dev test-dev
 
 test-dev:
 	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) sh -c 'php artisan test'
