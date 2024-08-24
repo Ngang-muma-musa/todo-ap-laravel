@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - develop
+      - Test-todo-repo
   pull_request:
     branches:
       - main
@@ -30,6 +31,7 @@ jobs:
         if: |
           github.ref == 'refs/heads/main' ||
           github.ref == 'refs/heads/develop' ||
+          github.ref == 'refs/heads/Test-todo-repo' ||
           startsWith(github.ref, 'refs/heads/feature/')
         run: make test
          # Assuming you have a 'test' target in your Makefile
