@@ -76,3 +76,6 @@ deploy-production:
 # Install Composer dependencies
 install-dependencies:
 	composer install
+
+test1:
+	docker exec -it todo-laravel-app-1 bash -c 'php artisan test'

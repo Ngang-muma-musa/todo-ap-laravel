@@ -37,7 +37,7 @@ jobs:
           github.ref == 'refs/heads/develop' ||
           github.ref == 'refs/heads/Test-todo-repo' ||
           startsWith(github.ref, 'refs/heads/feature/')
-        run: make test
+        run: make test1
          # Assuming you have a 'test' target in your Makefile
 
       - name: Deploy to staging
