@@ -38,6 +38,10 @@ jobs:
           github.ref == 'refs/heads/Test-todo-repo' ||
           startsWith(github.ref, 'refs/heads/feature/')
         run: make test
+
+      - name: Get container logs
+        run: docker logs $(docker ps -q --filter "name=app")
+
          # Assuming you have a 'test' target in your Makefile
 
       - name: Deploy to staging
