@@ -1,7 +1,6 @@
 services:
 
   app:
-    container_name: todo-laravel
     build: .
     volumes:
       - .:/var/www/html
@@ -9,6 +8,7 @@ services:
       - 5000:8000
     depends_on:
       - mysql
+    restart: always
       
   mysql:
     image: mysql:8
