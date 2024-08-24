@@ -1,101 +1,85 @@
-# Laravel Todo App
+# Todo Laravel Project
 
 ## Overview
 
-This Laravel application is designed to manage todos and items with user authentication and CRUD operations. The project uses Docker for containerization and a `Makefile` to simplify common tasks.
+This project is a Todo application built with Laravel and Docker. It features user authentication, CRUD operations for todos and items, and uses repositories for data access. The application is containerized using Docker Compose.
 
 ## Features
 
-- **User Authentication**: Register, login, and logout functionality.
-- **Todo Management**: CRUD operations for todos.
-- **Item Management**: CRUD operations for items associated with todos.
-- **Repository Pattern**: Organized data access through repository interfaces and implementations.
-- **API Resources**: Consistent response formatting using Laravel API resources.
+- User registration and login
+- CRUD operations for todos and items
+- Soft deletes for todos and items
+- Custom exception handling
+- Automated testing with PHPUnit
 
-## Requirements
+## Technologies Used
 
-- PHP 8.2 or higher
-- Composer
-- Docker and Docker Compose
+- **Laravel**: PHP framework for building web applications.
+- **Docker**: Containerization platform to manage the application's environment.
+- **MySQL**: Database management system.
+- **phpMyAdmin**: Web-based database management tool.
 
 ## Installation
 
-### Clone the Repository
+### Prerequisites
 
-```bash
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+- Docker
+- Docker Compose
 
-Set Up the Project
-Use the make commands to set up and manage the project. Ensure Docker and Docker Compose are installed.
+### Setup
+Start project
 
-make setup
+`make dev   `
 
-Environment Configuration
-Copy the .env.example file to .env and adjust the configuration as needed.
+Build Docker Containers
 
-cp .env.example .env
+`make build`
 
+Start Docker Containers
 
-cp .env.example .env
+`make up`
 
-Generating Application Key
+Install Composer Dependencies
 
-make root
-# Inside the container, run:
-php artisan key:generate
+`make install-dependencies`
 
-make root
-# Inside the container, run:
-php artisan key:generate
+Run Migrations
+
+`make migrate`
 
 
-Make Commands
-Here are the make commands available for managing the project:
+Available Commands
 
-make build: Build Docker containers.
-make up: Start Docker containers in detached mode.
-make stop: Stop Docker containers.
-make down: Bring down Docker containers and remove orphans.
-make composer-update: Update Composer dependencies.
-make migrate: Run database migrations.
-make test: Run tests in the Docker container.
-make logs: Show logs for the application service.
-make root: Access Docker container with root user.
-make prune: Remove unused Docker objects.
-make deploy-staging: Deploy to staging environment.
-make deploy-production: Deploy to production environment.
-make install-dependencies: Install Composer dependencies.
-make test1: Run tests inside the app container.
 
-Example Usage
-Build and Start Containers
+`Build Docker containers: make build`
+`Start Docker containers in detached mode: make up`
+`Stop Docker containers: make stop`
+`Update Composer dependencies: make composer-update`
+`Run tests: make test`
+`Run database migrations: make migrate`
+`Bring down Docker containers: make down`
+`Access Docker container with root user: make root`
+`Show logs for the specified service: make logs`
+`Remove unused Docker objects: make prune`
+`Deploy to staging: make deploy-staging`
+`Deploy to production: make deploy-production`
 
-make dev
+Testing
+To run tests, ensure that Docker containers are up and then execute:
 
-Example Usage
-Build and Start Containers
-
-make dev
+make test
 
 
 API Endpoints
-Register User: POST /api/v1/register
-Login User: POST /api/v1/login
-Logout User: POST /api/v1/logout
-List Todos: GET /api/v1/todos
-Create Todo: POST /api/v1/todos
-Show Todo: GET /api/v1/todos/{id}
-Update Todo: PUT /api/v1/todos/{id}
-Delete Todo: DELETE /api/v1/todos/{id}
-List Items: GET /api/v1/todos/{todoId}/items
-Create Item: POST /api/v1/todos/{todoId}/items
-Show Item: GET /api/v1/items/{id}
-Update Item: PUT /api/v1/items/{id}
-Delete Item: DELETE /api/v1/items/{id}
+User Registration: POST /api/v1/register
 
-Testing
-To run the tests, use:
+User Login: POST /api/v1/login
 
-make test
+Create Todo: POST /api/v1/users/{userId}/todos
+
+Get Todos: GET /api/v1/users/{userId}/todos
+
+Update Todo: PUT /api/v1/todos/{todoId}
+
+Delete Todo: DELETE /api/v1/todos/{todoId}
 
