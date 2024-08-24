@@ -1,5 +1,7 @@
 # Todo Laravel Project
 
+Link TO Swagger: https://app.swaggerhub.com/apis/Ngang-muma-musa/Todo/1.0.0
+
 ## Overview
 
 This project is a Todo application built with Laravel and Docker. It features user authentication, CRUD operations for todos and items, and uses repositories for data access. The application is containerized using Docker Compose.
@@ -82,4 +84,3 @@ Get Todos: GET /api/v1/users/{userId}/todos
 Update Todo: PUT /api/v1/todos/{todoId}
 
 Delete Todo: DELETE /api/v1/todos/{todoId}
-
