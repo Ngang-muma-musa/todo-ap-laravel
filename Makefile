@@ -38,14 +38,10 @@ composer-update:
 	docker exec -it $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c "composer update"
 
 # Run tests in the Docker container
-test: build test-dev
-
-show:
-	@echo "Current running Docker containers:"
-	@docker ps
+test: dev test-dev
 
 test-dev:
-	docker-compose exec -T app bash -c 'php artisan test'
+	docker exec -u root $$(docker-compose --project-name $(PROJECT_NAME) ps -q app) bash -c 'php artisan test'
 
 # Run database migrations
 migrate:
