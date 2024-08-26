@@ -29,23 +29,23 @@ This project is a Todo application built with Laravel and Docker. It features us
 - Docker Compose
 
 ### Setup
-Start project
+**Start project**
 
-`make dev   `
+```make dev```
 
-Build Docker Containers
+**Build Docker Containers**
 
 `make build`
 
-Start Docker Containers
+**Start Docker Containers**
 
 `make up`
 
-Install Composer Dependencies
+**Install Composer Dependencies**
 
 `make install-dependencies`
 
-Run Migrations
+**Run Migrations**
 
 `make migrate`
 
@@ -53,18 +53,21 @@ Run Migrations
 Available Commands
 
 
-`Build Docker containers: make build`
-`Start Docker containers in detached mode: make up`
-`Stop Docker containers: make stop`
-`Update Composer dependencies: make composer-update`
-`Run tests: make test`
-`Run database migrations: make migrate`
-`Bring down Docker containers: make down`
-`Access Docker container with root user: make root`
-`Show logs for the specified service: make logs`
-`Remove unused Docker objects: make prune`
-`Deploy to staging: make deploy-staging`
-`Deploy to production: make deploy-production`
+### Makefile Commands
+
+- **Build Docker containers:** `make build`
+- **Start Docker containers in detached mode:** `make up`
+- **Stop Docker containers:** `make stop`
+- **Update Composer dependencies:** `make composer-update`
+- **Run tests:** `make test`
+- **Run database migrations:** `make migrate`
+- **Bring down Docker containers:** `make down`
+- **Access Docker container with root user:** `make root`
+- **Show logs for the specified service:** `make logs`
+- **Remove unused Docker objects:** `make prune`
+- **Deploy to staging:** `make deploy-staging`
+- **Deploy to production:** `make deploy-production`
+
 
 Testing
 To run tests, ensure that Docker containers are up and then execute:
