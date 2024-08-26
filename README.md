@@ -71,16 +71,25 @@ To run tests, ensure that Docker containers are up and then execute:
 
 make test
 
+make dev
+
 
 API Endpoints
-User Registration: POST /api/v1/register
+Register User: POST /api/v1/register
+Login User: POST /api/v1/login
+Logout User: POST /api/v1/logout
+List Todos: GET /api/v1/todos
+Create Todo: POST /api/v1/todos
+Show Todo: GET /api/v1/todos/{id}
+Update Todo: PUT /api/v1/todos/{id}
+Delete Todo: DELETE /api/v1/todos/{id}
+List Items: GET /api/v1/todos/{todoId}/items
+Create Item: POST /api/v1/todos/{todoId}/items
+Show Item: GET /api/v1/items/{id}
+Update Item: PUT /api/v1/items/{id}
+Delete Item: DELETE /api/v1/items/{id}
 
-User Login: POST /api/v1/login
+Testing
+To run the tests, use:
 
-Create Todo: POST /api/v1/users/{userId}/todos
-
-Get Todos: GET /api/v1/users/{userId}/todos
-
-Update Todo: PUT /api/v1/todos/{todoId}
-
-Delete Todo: DELETE /api/v1/todos/{todoId}
+make test
